@@ -112,7 +112,7 @@ const Grn2 = () => {
       id="footer"
       className="relative w-full overflow-hidden"
       style={{
-        backgroundColor: '#0A2E1A', // Dark green background - matching green section
+        backgroundColor: '#000000', // Black background
         paddingTop: '80px',
         paddingBottom: '60px',
         position: 'relative',
@@ -123,7 +123,6 @@ const Grn2 = () => {
         <defs>
           <filter id="glow-footer">
             <feGaussianBlur stdDeviation="6" result="coloredBlur" />
-            <feColorMatrix in="coloredBlur" type="matrix" values="0 1 0 0 0  0 1 0 0 0  0 1 0 0 0  0 0 0 1 0" />
             <feMerge>
               <feMergeNode in="coloredBlur" />
               <feMergeNode in="coloredBlur" />
@@ -132,9 +131,26 @@ const Grn2 = () => {
           </filter>
           <filter id="glow-strong-footer">
             <feGaussianBlur stdDeviation="8" result="coloredBlur" />
-            <feColorMatrix in="coloredBlur" type="matrix" values="0 1 0 0 0  0 1 0 0 0  0 1 0 0 0  0 0 0 1 0" />
             <feMerge>
               <feMergeNode in="coloredBlur" />
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-white-footer">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+            <feColorMatrix in="coloredBlur" type="matrix" values="1 1 1 0 0  1 1 1 0 0  1 1 1 0 0  0 0 0 1 0" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-golden-footer">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+            <feColorMatrix in="coloredBlur" type="matrix" values="1 0.84 0.22 0 0  1 0.84 0.22 0 0  1 0.84 0.22 0 0  0 0 0 1 0" />
+            <feMerge>
               <feMergeNode in="coloredBlur" />
               <feMergeNode in="coloredBlur" />
               <feMergeNode in="SourceGraphic" />
@@ -160,11 +176,11 @@ const Grn2 = () => {
           }}
           d="M 200,0 L 200,100"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="7,14"
-          filter="url(#glow-footer)"
+          filter="url(#glow-white-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -176,11 +192,11 @@ const Grn2 = () => {
           }}
           d="M 600,0 L 600,100"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#D4AF37"
           strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray="6,12"
-          filter="url(#glow-strong-footer)"
+          filter="url(#glow-golden-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -192,11 +208,11 @@ const Grn2 = () => {
           }}
           d="M 50,0 L 50,100"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="8,16"
-          filter="url(#glow-footer)"
+          filter="url(#glow-white-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -208,11 +224,11 @@ const Grn2 = () => {
           }}
           d="M 1090,0 L 1090,100"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#D4AF37"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="6,12"
-          filter="url(#glow-footer)"
+          filter="url(#glow-golden-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -225,12 +241,12 @@ const Grn2 = () => {
           }}
           d="M 50,50 L 350,50 Q 370,50 370,70 L 370,200 Q 370,220 350,220 L 50,220 Q 30,220 30,200 L 30,70 Q 30,50 50,50 Z"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeDasharray="8,16"
-          filter="url(#glow-footer)"
+          filter="url(#glow-white-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -243,12 +259,12 @@ const Grn2 = () => {
           }}
           d="M 1090,80 L 1390,80 Q 1410,80 1410,100 L 1410,180 Q 1410,200 1390,200 L 1090,200 Q 1070,200 1070,180 L 1070,100 Q 1070,80 1090,80 Z"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#D4AF37"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeDasharray="6,12"
-          filter="url(#glow-footer)"
+          filter="url(#glow-golden-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -261,12 +277,12 @@ const Grn2 = () => {
           }}
           d="M 80,280 L 380,280 Q 400,280 400,300 L 400,420 Q 400,440 380,440 L 80,440 Q 60,440 60,420 L 60,300 Q 60,280 80,280 Z"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#D4AF37"
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeDasharray="7,14"
-          filter="url(#glow-footer)"
+          filter="url(#glow-golden-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -279,12 +295,12 @@ const Grn2 = () => {
           }}
           d="M 600,250 L 900,250 Q 920,250 920,270 L 920,380 Q 920,400 900,400 L 600,400 Q 580,400 580,380 L 580,270 Q 580,250 600,250 Z"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#FFFFFF"
           strokeWidth="1.3"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeDasharray="9,18"
-          filter="url(#glow-strong-footer)"
+          filter="url(#glow-white-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -297,12 +313,12 @@ const Grn2 = () => {
           }}
           d="M 1120,350 L 1420,350 Q 1440,350 1440,370 L 1440,520 Q 1440,540 1420,540 L 1120,540 Q 1100,540 1100,520 L 1100,370 Q 1100,350 1120,350 Z"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#D4AF37"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeDasharray="10,20"
-          filter="url(#glow-strong-footer)"
+          filter="url(#glow-golden-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -315,11 +331,11 @@ const Grn2 = () => {
           }}
           d="M 400,140 Q 500,160 600,140 T 800,140"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#FFFFFF"
           strokeWidth="1"
           strokeLinecap="round"
           strokeDasharray="5,10"
-          filter="url(#glow-footer)"
+          filter="url(#glow-white-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -332,11 +348,11 @@ const Grn2 = () => {
           }}
           d="M 920,325 Q 1000,340 1080,325"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#D4AF37"
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeDasharray="6,12"
-          filter="url(#glow-footer)"
+          filter="url(#glow-golden-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -349,11 +365,11 @@ const Grn2 = () => {
           }}
           d="M 450,500 L 1000,500"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#FFFFFF"
           strokeWidth="1"
           strokeLinecap="round"
           strokeDasharray="8,16"
-          filter="url(#glow-footer)"
+          filter="url(#glow-white-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -366,11 +382,11 @@ const Grn2 = () => {
           }}
           d="M 0,100 Q 360,80 720,100 T 1440,100"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#D4AF37"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="8,15"
-          filter="url(#glow-footer)"
+          filter="url(#glow-golden-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -382,11 +398,11 @@ const Grn2 = () => {
           }}
           d="M 200,0 Q 180,150 200,300 T 200,600"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="7,14"
-          filter="url(#glow-footer)"
+          filter="url(#glow-white-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -398,11 +414,11 @@ const Grn2 = () => {
           }}
           d="M 600,0 Q 620,200 600,400 T 600,600"
           fill="none"
-          stroke="#4A9D6E"
+          stroke="#D4AF37"
           strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray="6,12"
-          filter="url(#glow-strong-footer)"
+          filter="url(#glow-golden-footer)"
           style={{
             willChange: 'transform, stroke-dashoffset, opacity',
           }}
@@ -424,7 +440,7 @@ const Grn2 = () => {
               <div
                 className="text-2xl font-mono font-bold"
                 style={{
-                  color: '#4A9D6E', // Green accent for logo
+                  color: '#D4AF37', // Golden accent for logo
                   letterSpacing: '0.1em',
                 }}
               >

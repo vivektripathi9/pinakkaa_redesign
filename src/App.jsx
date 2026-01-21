@@ -28,11 +28,11 @@ function App() {
             <WhyChooseUs />
             <AboutUs />
             <ServiceNew />
-            <Animation />
             <Portfolio />
             <Testimonials />
             <Animation2 />
             <Green />
+            <Animation />
             <Grn2 />
             <Footer />
           </div>
