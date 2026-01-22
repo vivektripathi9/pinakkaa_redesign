@@ -14,6 +14,8 @@ const Animation = () => {
   const backgroundOverlayRef = useRef(null)
   const timelineRef = useRef(null)
   const lettersRef = useRef([])
+  const gradientWavesRef = useRef([])
+  const textGlowRef = useRef(null)
 
   useEffect(() => {
     if (!sectionRef.current || !containerRef.current || !gridRef.current || !gridSecondaryRef.current || !backgroundOverlayRef.current || !glowingGridRef.current) return
@@ -28,6 +30,98 @@ const Animation = () => {
     let isMounted = true
     let scrollTriggerInstance = null
 
+    // Create gradient light waves background
+    const createGradientWaves = () => {
+      if (!sectionRef.current) return
+
+      const waves = []
+      const waveCount = 3
+      
+      for (let i = 0; i < waveCount; i++) {
+        const wave = document.createElement('div')
+        wave.className = 'gradient-wave'
+        wave.style.position = 'absolute'
+        wave.style.inset = '0'
+        wave.style.pointerEvents = 'none'
+        wave.style.zIndex = '0' // Behind overlay but visible through transitions
+        wave.style.opacity = '0.25'
+        wave.style.willChange = 'transform, opacity'
+        wave.style.mixBlendMode = 'screen' // Blend mode for premium effect
+        
+        // Muted violet, blue, and silver tones
+        const gradients = [
+          'linear-gradient(135deg, rgba(138, 99, 210, 0.3) 0%, rgba(99, 102, 241, 0.2) 50%, rgba(147, 197, 253, 0.15) 100%)',
+          'linear-gradient(225deg, rgba(99, 102, 241, 0.25) 0%, rgba(147, 197, 253, 0.2) 50%, rgba(203, 213, 225, 0.15) 100%)',
+          'linear-gradient(45deg, rgba(203, 213, 225, 0.2) 0%, rgba(138, 99, 210, 0.15) 50%, rgba(99, 102, 241, 0.2) 100%)',
+        ]
+        
+        wave.style.background = gradients[i % gradients.length]
+        wave.style.backgroundSize = '200% 200%'
+        wave.style.filter = 'blur(60px)'
+        
+        sectionRef.current.insertBefore(wave, backgroundOverlay)
+        waves.push(wave)
+      }
+      
+      gradientWavesRef.current = waves
+      
+      // Animate waves extremely slowly
+      waves.forEach((wave, index) => {
+        const duration = 40 + (index * 10) // 40s, 50s, 60s
+        const delay = index * 2
+        
+        gsap.to(wave, {
+          backgroundPosition: '200% 200%',
+          duration: duration,
+          ease: 'linear',
+          repeat: -1,
+          delay: delay,
+        })
+        
+        // Subtle position animation for flowing effect
+        gsap.to(wave, {
+          x: `+=${50 + index * 20}`,
+          y: `+=${30 + index * 15}`,
+          rotation: index % 2 === 0 ? 5 : -5,
+          duration: duration * 1.5,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+          delay: delay,
+        })
+      })
+    }
+
+    // Create text glow effect
+    const createTextGlow = () => {
+      if (!containerRef.current) return
+
+      const glow = document.createElement('div')
+      glow.className = 'text-glow'
+      glow.style.position = 'absolute'
+      glow.style.inset = '0'
+      glow.style.pointerEvents = 'none'
+      glow.style.zIndex = '2'
+      glow.style.opacity = '0'
+      glow.style.filter = 'blur(40px)'
+      glow.style.willChange = 'opacity, filter'
+      glow.style.background = 'radial-gradient(circle at center, rgba(138, 99, 210, 0.4) 0%, rgba(99, 102, 241, 0.3) 30%, rgba(147, 197, 253, 0.2) 60%, transparent 100%)'
+      glow.style.mixBlendMode = 'screen'
+      
+      sectionRef.current.insertBefore(glow, containerRef.current)
+      textGlowRef.current = glow
+      
+      // Gentle brightness pulse every few seconds
+      gsap.to(glow, {
+        opacity: 0.25,
+        filter: 'blur(50px)',
+        duration: 4,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+      })
+    }
+
     try {
       // Clear container
       container.innerHTML = ''
@@ -35,7 +129,7 @@ const Animation = () => {
       // Full text
       const fullText = 'We Build Your Future'
       
-      // Create letter elements - all on same baseline
+      // Create letter elements - all on same baseline with gradient and glow
       const letterElements = []
       fullText.split('').forEach((char, index) => {
         const letterEl = document.createElement('span')
@@ -46,14 +140,59 @@ const Animation = () => {
         letterEl.style.verticalAlign = 'baseline'
         letterEl.style.transformOrigin = 'center center'
         letterEl.style.transformStyle = 'preserve-3d'
-        letterEl.style.color = '#0A1B2E' // Dark text for white background initially
         letterEl.style.opacity = '1' // Ensure initial opacity
         letterEl.style.visibility = 'visible' // Ensure visibility
-        letterEl.style.textShadow = '0 0 0 rgba(0,0,0,0)' // Initial shadow for glow effect
+        
+        // Soft outer glow - premium neon-like aura
+        letterEl.style.textShadow = `
+          0 0 20px rgba(138, 99, 210, 0.15),
+          0 0 40px rgba(99, 102, 241, 0.1),
+          0 0 60px rgba(147, 197, 253, 0.08)
+        `
+        letterEl.style.filter = 'drop-shadow(0 0 10px rgba(138, 99, 210, 0.1))'
+        
+        // Very slow gradient shift inside text - starts with dark for white background
+        letterEl.style.background = 'linear-gradient(135deg, #0A1B2E 0%, rgba(138, 99, 210, 0.2) 50%, #0A1B2E 100%)'
+        letterEl.style.backgroundSize = '200% 200%'
+        letterEl.style.WebkitBackgroundClip = 'text'
+        letterEl.style.WebkitTextFillColor = 'transparent'
+        letterEl.style.backgroundClip = 'text'
+        letterEl.style.color = 'transparent' // Ensure color doesn't interfere
+        
         letterEl.dataset.index = index
         
         container.appendChild(letterEl)
         letterElements.push(letterEl)
+        
+        // Animate gradient shift inside text - very slow
+        const gradientColors = [
+          'linear-gradient(135deg, #0A1B2E 0%, rgba(138, 99, 210, 0.3) 50%, #0A1B2E 100%)',
+          'linear-gradient(135deg, #0A1B2E 0%, rgba(99, 102, 241, 0.25) 50%, #0A1B2E 100%)',
+          'linear-gradient(135deg, #0A1B2E 0%, rgba(147, 197, 253, 0.2) 50%, #0A1B2E 100%)',
+        ]
+        
+        gsap.to(letterEl, {
+          backgroundPosition: '200% 0%',
+          duration: 8 + (index * 0.5), // Very slow, unique per letter
+          ease: 'linear',
+          repeat: -1,
+          delay: index * 0.1,
+        })
+        
+        // Gentle brightness pulse every few seconds
+        gsap.to(letterEl, {
+          filter: 'drop-shadow(0 0 15px rgba(138, 99, 210, 0.2)) brightness(1.05)',
+          textShadow: `
+            0 0 25px rgba(138, 99, 210, 0.2),
+            0 0 50px rgba(99, 102, 241, 0.15),
+            0 0 75px rgba(147, 197, 253, 0.1)
+          `,
+          duration: 3.5,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+          delay: index * 0.05,
+        })
       })
 
       // Store references
@@ -108,7 +247,6 @@ const Animation = () => {
             rotationY: 0,
             rotationX: 0,
             z: 0,
-            color: colors.dark, // Dark text for white background
             filter: 'blur(0px)',
           })
           
@@ -189,16 +327,36 @@ const Animation = () => {
             phase1Start
           )
           
-          // Text color: Dark to Light (for visibility on black) - Smoother transition
+          // Text gradient: Dark to Light (for visibility on black) - Smoother transition
+          // Also update gradient and glow for dark background
           tl.to(
             allLetters,
             {
-              color: colors.light,
+              background: 'linear-gradient(135deg, #EAF0F6 0%, rgba(138, 99, 210, 0.5) 50%, #EAF0F6 100%)',
+              textShadow: `
+                0 0 20px rgba(138, 99, 210, 0.25),
+                0 0 40px rgba(99, 102, 241, 0.2),
+                0 0 60px rgba(147, 197, 253, 0.15)
+              `,
+              filter: 'drop-shadow(0 0 10px rgba(138, 99, 210, 0.2))',
               duration: phase1Duration,
               ease: 'power1.inOut', // Smoother easing
             },
             phase1Start
           )
+          
+          // Update text glow opacity for dark background
+          if (textGlowRef.current) {
+            tl.to(
+              textGlowRef.current,
+              {
+                opacity: 0.3,
+                duration: phase1Duration,
+                ease: 'power1.inOut',
+              },
+              phase1Start
+            )
+          }
           
           // SMOOTH LETTER ANIMATION - Wave effect
           letterPositions.forEach((pos, index) => {
@@ -248,16 +406,36 @@ const Animation = () => {
             phase2Start
           )
           
-          // Text color: Light to Dark (for visibility on white) - Smoother transition
+          // Text gradient: Light to Dark (for visibility on white) - Smoother transition
+          // Also update gradient and glow for light background
           tl.to(
             allLetters,
             {
-              color: colors.dark,
+              background: 'linear-gradient(135deg, #0A1B2E 0%, rgba(138, 99, 210, 0.3) 50%, #0A1B2E 100%)',
+              textShadow: `
+                0 0 20px rgba(138, 99, 210, 0.15),
+                0 0 40px rgba(99, 102, 241, 0.1),
+                0 0 60px rgba(147, 197, 253, 0.08)
+              `,
+              filter: 'drop-shadow(0 0 10px rgba(138, 99, 210, 0.1))',
               duration: phase2Duration,
               ease: 'power1.inOut', // Smoother easing
             },
             phase2Start
           )
+          
+          // Update text glow opacity for light background
+          if (textGlowRef.current) {
+            tl.to(
+              textGlowRef.current,
+              {
+                opacity: 0.15,
+                duration: phase2Duration,
+                ease: 'power1.inOut',
+              },
+              phase2Start
+            )
+          }
           
           // SMOOTH LETTER ANIMATION - Compression and expansion
           letterPositions.forEach((pos, index) => {
@@ -528,6 +706,10 @@ const Animation = () => {
         }
       }
 
+      // Initialize gradient waves and text glow
+      createGradientWaves()
+      createTextGlow()
+
       // Use requestAnimationFrame for better timing - ensure DOM is ready
       const timeoutId = setTimeout(() => {
         requestAnimationFrame(() => {
@@ -572,6 +754,33 @@ const Animation = () => {
           })
 
           lettersRef.current = []
+
+          // Cleanup gradient waves
+          gradientWavesRef.current.forEach(wave => {
+            try {
+              if (wave && wave.parentNode) {
+                gsap.killTweensOf(wave)
+                wave.parentNode.removeChild(wave)
+              }
+            } catch (e) {
+              // Ignore cleanup errors
+            }
+          })
+
+          gradientWavesRef.current = []
+
+          // Cleanup text glow
+          if (textGlowRef.current) {
+            try {
+              gsap.killTweensOf(textGlowRef.current)
+              if (textGlowRef.current.parentNode) {
+                textGlowRef.current.parentNode.removeChild(textGlowRef.current)
+              }
+            } catch (e) {
+              // Ignore cleanup errors
+            }
+            textGlowRef.current = null
+          }
         } catch (error) {
           console.error('Cleanup error:', error)
         }

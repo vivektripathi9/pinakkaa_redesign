@@ -27,26 +27,30 @@ const Portfolio = () => {
     { id: 6, name: 'Ceska Kooperativa', logo: '/logos/ceska-kooperativa.svg' },
   ]
 
-  // Glowing grid animation - Enhanced with multiple layers and stronger glow
+  // Smooth glowing grid animation - Optimized for performance
   useEffect(() => {
     if (!glowingGridRef.current) return
 
     const grid = glowingGridRef.current
 
-    // Continuous pulsing glow animation - more dramatic and brighter
+    // Use CSS custom properties for smoother animations
+    grid.style.setProperty('--glow-opacity', '0.85')
+    grid.style.setProperty('--glow-brightness', '1.5')
+
+    // Continuous pulsing glow animation - optimized with will-change
     const glowTimeline = gsap.timeline({ repeat: -1, yoyo: true })
     
-    // Main glow pulse - Grid lines with stronger glow
+    // Main glow pulse - Grid lines with smoother animation
     glowTimeline.to(grid, {
       opacity: 1,
-      filter: 'brightness(2) drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 16px rgba(255, 215, 0, 0.6))',
-      duration: 2.5,
+      filter: 'brightness(1.8) drop-shadow(0 0 6px rgba(255, 215, 0, 0.6))',
+      duration: 3,
       ease: 'sine.inOut',
     })
     .to(grid, {
       opacity: 0.75,
-      filter: 'brightness(1.6) drop-shadow(0 0 6px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 12px rgba(255, 215, 0, 0.4))',
-      duration: 2.5,
+      filter: 'brightness(1.3) drop-shadow(0 0 4px rgba(255, 215, 0, 0.4))',
+      duration: 3,
       ease: 'sine.inOut',
     })
 
@@ -56,7 +60,7 @@ const Portfolio = () => {
     }
   }, [])
 
-  // Fade-in animation on scroll
+  // Smooth fade-in animation on scroll
   useEffect(() => {
     if (!sectionRef.current) return
 
@@ -67,23 +71,27 @@ const Portfolio = () => {
     // Set initial state
     gsap.set(logos, {
       opacity: 0,
-      y: 20,
+      y: 30,
+      scale: 0.95,
     })
 
-    // Create scroll-triggered animation
+    // Create scroll-triggered animation with proper ScrollTrigger syntax
     logos.forEach((logo, index) => {
-      gsap.to(logo, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        delay: index * 0.05, // Staggered reveal
-        scrollTrigger: {
-          trigger: logo,
-          start: 'top 85%',
-          end: 'top 60%',
-          toggleActions: 'play none none none',
+      ScrollTrigger.create({
+        trigger: logo,
+        start: 'top 85%',
+        end: 'top 50%',
+        onEnter: () => {
+          gsap.to(logo, {
+            opacity: 0.65,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: index * 0.08,
+          })
         },
+        once: true,
       })
     })
 
@@ -104,6 +112,7 @@ const Portfolio = () => {
       style={{
         backgroundColor: '#FFFFFF',
         position: 'relative',
+        overflow: 'hidden',
       }}
     >
       {/* Glowing Golden Grid Lines Only - Animated - Primary Layer with Enhanced Glow */}
@@ -121,6 +130,7 @@ const Portfolio = () => {
           filter: 'brightness(1.5) drop-shadow(0 0 4px rgba(255, 215, 0, 0.5))',
           willChange: 'opacity, filter',
           boxShadow: 'inset 0 0 100px rgba(255, 215, 0, 0.1)',
+          transform: 'translateZ(0)', // Force GPU acceleration
         }}
       />
       
@@ -198,19 +208,31 @@ const Portfolio = () => {
                 minHeight: '180px', // Increased to accommodate larger logos
                 padding: '40px',
                 opacity: 0.65,
-                transition: 'opacity 0.3s ease',
                 cursor: 'default',
                 filter: 'grayscale(100%) brightness(0.5)',
                 position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                willChange: 'opacity, transform, filter',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = '0.85'
+                gsap.to(e.currentTarget, {
+                  opacity: 0.9,
+                  scale: 1.05,
+                  filter: 'grayscale(50%) brightness(0.7)',
+                  duration: 0.4,
+                  ease: 'power2.out',
+                })
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = '0.65'
+                gsap.to(e.currentTarget, {
+                  opacity: 0.65,
+                  scale: 1,
+                  filter: 'grayscale(100%) brightness(0.5)',
+                  duration: 0.4,
+                  ease: 'power2.out',
+                })
               }}
             >
               {/* Logo Image - Centered in grid cell - Increased size */}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import logoImage from '../components/Asset5.webp'
 
@@ -10,6 +10,7 @@ const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false)
   const lastScrollY = useRef(0)
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +35,7 @@ const Navigation = () => {
   }, [])
 
   const navLinks = [
-    { name: 'Home', href: '#hero', isRoute: false },
+    { name: 'Home', href: '/', isRoute: true, scrollTo: '#hero' },
     { name: 'Why Us', href: '#why-choose-us', isRoute: false },
     { name: 'About', href: '#about', isRoute: false },
     { name: 'Services', href: '#services-new', isRoute: false },
@@ -53,11 +54,36 @@ const Navigation = () => {
 
   const handleLinkClick = (link, e) => {
     e.preventDefault()
+    setIsMobileMenuOpen(false)
+    
     if (link.isRoute) {
-      navigate(link.href)
-      setIsMobileMenuOpen(false)
+      if (link.scrollTo) {
+        // Home link - navigate to home, then scroll
+        if (location.pathname !== '/') {
+          navigate(link.href)
+          // Scroll after navigation completes
+          setTimeout(() => {
+            scrollToSection(link.scrollTo)
+          }, 300)
+        } else {
+          // Already on home page, just scroll
+          scrollToSection(link.scrollTo)
+        }
+      } else {
+        // Other routes (like Contact)
+        navigate(link.href)
+      }
     } else {
-      scrollToSection(link.href)
+      // Hash links - check if we're on home page
+      if (location.pathname === '/') {
+        scrollToSection(link.href)
+      } else {
+        // Navigate to home page first, then scroll
+        navigate('/')
+        setTimeout(() => {
+          scrollToSection(link.href)
+        }, 300)
+      }
     }
   }
 
@@ -101,14 +127,18 @@ const Navigation = () => {
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link, index) => (
               link.isRoute ? (
-                <Link
+                <motion.a
                   key={link.name}
-                  to={link.href}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(link, e)}
                   className="font-sans text-base text-white/80 hover:text-white transition-colors relative group"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
                 >
                   {link.name}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
-                </Link>
+                </motion.a>
               ) : (
                 <motion.a
                   key={link.name}
@@ -148,25 +178,17 @@ const Navigation = () => {
             exit={{ opacity: 0, height: 0 }}
           >
             {navLinks.map((link) => (
-              link.isRoute ? (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 font-sans text-sm text-white/80 hover:text-white transition-colors border-b border-white/10 last:border-0"
-                >
-                  {link.name}
-                </Link>
-              ) : (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(link, e)}
-                  className="block py-3 font-sans text-sm text-white/80 hover:text-white transition-colors border-b border-white/10 last:border-0"
-                >
-                  {link.name}
-                </a>
-              )
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => {
+                  handleLinkClick(link, e)
+                  setIsMobileMenuOpen(false)
+                }}
+                className="block py-3 font-sans text-sm text-white/80 hover:text-white transition-colors border-b border-white/10 last:border-0"
+              >
+                {link.name}
+              </a>
             ))}
           </motion.div>
         )}

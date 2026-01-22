@@ -219,7 +219,7 @@ const AboutUs = () => {
       style={{
         minHeight: '500vh',
         backgroundColor: '#FFFFFF',
-        paddingTop: '10vh',
+        paddingTop: '120px', // Increased to account for navbar and provide spacing
         paddingBottom: '10vh',
       }}
     >
@@ -268,11 +268,12 @@ const AboutUs = () => {
 
           {/* RIGHT COLUMN: Premium Sticky Video Container with Custom Mask */}
           <div
-            className="relative lg:sticky lg:top-[15vh] lg:h-[70vh] h-[50vh]"
+            className="relative lg:sticky lg:h-[70vh] h-[50vh]"
             style={{
               position: isMobile ? 'relative' : 'sticky',
-              top: isMobile ? 'auto' : '15vh',
+              top: isMobile ? 'auto' : '120px', // Increased to account for navbar height
               height: isMobile ? '50vh' : '70vh',
+              zIndex: 1, // Ensure it stays below navbar (z-50)
             }}
           >
             {/* SVG Definitions for Custom Mask Shape */}

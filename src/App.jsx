@@ -7,13 +7,14 @@ import WhyChooseUs from './sections/why-choose-us/WhyChooseUs'
 import AboutUs from './sections/about/AboutUs'
 import ServiceNew from './sections/serviceNew/servicenew'
 import ExplorePage from './pages/ExplorePage'
-import Animation from './sections/animation/animation'
 import Portfolio from './sections/portfolio/Portfolio'
 import Testimonials from './sections/testimonials/Testimonials'
 import Animation2 from './sections/animation2/animation2'
 import Green from './sections/green/green'
 import Grn2 from './sections/grn2/grn2'
+import GiveYour from './sections/give_your/give_your'
 import ContactPage from './pages/ContactPage'
+import DynamicServicePage from './dynamicService/pages/DynamicServicePage'
 
 function App() {
   return (
@@ -26,13 +27,13 @@ function App() {
             <Navigation />
             <Hero />
             <WhyChooseUs />
+            <GiveYour />
             <AboutUs />
             <ServiceNew />
             <Portfolio />
             <Testimonials />
             <Animation2 />
             <Green />
-            <Animation />
             <Grn2 />
             <Footer />
           </div>
@@ -40,6 +41,7 @@ function App() {
       />
       <Route path="/explore" element={<ExplorePage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/services/:serviceSlug" element={<DynamicServicePage />} />
     </Routes>
   )
 }

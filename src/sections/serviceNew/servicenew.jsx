@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
@@ -567,8 +568,8 @@ const ServiceNew = () => {
 
         {/* Explore Button at the end */}
         <div className="flex justify-center mt-32 md:mt-40">
-          <a
-            href="/explore"
+          <Link
+            to="/explore"
             target="_blank"
             rel="noopener noreferrer"
             ref={exploreButtonRef}
@@ -586,6 +587,11 @@ const ServiceNew = () => {
               cursor: 'pointer',
               textDecoration: 'none',
             }}
+            onClick={(e) => {
+              // Open in new tab
+              e.preventDefault()
+              window.open('/explore', '_blank', 'noopener,noreferrer')
+            }}
           >
             <span>Explore More</span>
             <ArrowRight 
@@ -600,7 +606,7 @@ const ServiceNew = () => {
                 width: '0%',
               }}
             />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
