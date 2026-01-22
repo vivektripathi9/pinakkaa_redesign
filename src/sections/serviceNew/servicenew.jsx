@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
@@ -35,6 +35,7 @@ const services = [
 ]
 
 const ServiceNew = () => {
+  const navigate = useNavigate()
   const sectionRef = useRef(null)
   const introRef = useRef(null)
   const titleRef = useRef(null)
@@ -346,6 +347,15 @@ const ServiceNew = () => {
     }
   }
 
+  const handleExploreClick = () => {
+    // Scroll to top instantly before navigation (no animation)
+    window.scrollTo(0, 0)
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+    // Navigate immediately
+    navigate('/explore')
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -568,11 +578,9 @@ const ServiceNew = () => {
 
         {/* Explore Button at the end */}
         <div className="flex justify-center mt-32 md:mt-40">
-          <Link
-            to="/explore"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             ref={exploreButtonRef}
+            onClick={handleExploreClick}
             onMouseEnter={handleExploreButtonHover}
             onMouseLeave={handleExploreButtonLeave}
             className="group relative inline-flex items-center gap-4 px-10 py-5 border border-white/20 hover:border-white/40 transition-all duration-300"
@@ -586,11 +594,6 @@ const ServiceNew = () => {
               textTransform: 'uppercase',
               cursor: 'pointer',
               textDecoration: 'none',
-            }}
-            onClick={(e) => {
-              // Open in new tab
-              e.preventDefault()
-              window.open('/explore', '_blank', 'noopener,noreferrer')
             }}
           >
             <span>Explore More</span>
@@ -606,7 +609,7 @@ const ServiceNew = () => {
                 width: '0%',
               }}
             />
-          </Link>
+          </button>
         </div>
       </div>
     </section>

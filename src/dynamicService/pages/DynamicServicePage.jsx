@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -74,12 +74,24 @@ const DynamicServicePage = () => {
     }
   }, [service])
 
+  // Scroll to top instantly BEFORE browser paints (no visible scroll)
+  useLayoutEffect(() => {
+    // Set scroll position directly - happens synchronously before paint
+    window.scrollTo(0, 0)
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [serviceSlug]) // Re-run when service slug changes
+
   // Redirect to explore if service not found
   useEffect(() => {
-    if (!service) {
-      navigate('/explore', { replace: true })
+    if (!service && serviceSlug) {
+      // Small delay to ensure component is mounted
+      const timer = setTimeout(() => {
+        navigate('/explore', { replace: true })
+      }, 100)
+      return () => clearTimeout(timer)
     }
-  }, [service, navigate])
+  }, [service, serviceSlug, navigate])
 
   // Gradient animation for headings
   useEffect(() => {
@@ -161,8 +173,16 @@ const DynamicServicePage = () => {
     }
   }, [service])
 
+  // Show loading state or redirect message while checking service
   if (!service) {
-    return null
+    return (
+      <div className="min-h-screen relative flex items-center justify-center" style={{ backgroundColor: '#000000' }}>
+        <div className="text-white text-center">
+          <p className="text-xl mb-4">Service not found</p>
+          <p className="text-white/60 mb-8">Redirecting...</p>
+        </div>
+      </div>
+    )
   }
 
   // Get related services
