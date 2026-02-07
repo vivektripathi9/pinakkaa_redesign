@@ -146,96 +146,9 @@ const WhyChooseUs = () => {
     }
   }, [])
 
-  // Gradient animation for "Who we are" heading
-  useEffect(() => {
-    if (!whoWeAreHeadingRef.current) return
+  // Removed gradient animation for "Why Choose Us" heading - now static white text
 
-    const heading = whoWeAreHeadingRef.current
-    const gradientColors = [
-      { start: '#8B5CF6', end: '#EC4899' }, // Purple to Pink
-      { start: '#EC4899', end: '#3B82F6' }, // Pink to Blue
-      { start: '#3B82F6', end: '#8B5CF6' }, // Blue to Purple
-    ]
-
-    // Apply gradient styles
-    heading.style.background = `linear-gradient(90deg, ${gradientColors[0].start}, ${gradientColors[0].end})`
-    heading.style.webkitBackgroundClip = 'text'
-    heading.style.webkitTextFillColor = 'transparent'
-    heading.style.backgroundClip = 'text'
-    heading.style.backgroundSize = '200% 100%'
-    heading.style.backgroundPosition = '0% 50%'
-    heading.style.willChange = 'background-position'
-
-    // Gradient flow animation
-    const gradientFlow = gsap.to(heading, {
-      backgroundPosition: '100% 50%',
-      duration: 4,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true
-    })
-
-    // Subtle scale pulse
-    const scalePulse = gsap.to(heading, {
-      scale: 1.02,
-      duration: 3,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true
-    })
-
-    return () => {
-      if (gradientFlow) gradientFlow.kill()
-      if (scalePulse) scalePulse.kill()
-      gsap.killTweensOf(heading)
-    }
-  }, [])
-
-  // Gradient animation for "Why PINAKKAA Stands Out" heading
-  useEffect(() => {
-    if (!standsOutHeadingRef.current) return
-
-    const heading = standsOutHeadingRef.current
-    const gradientColors = [
-      { start: '#8B5CF6', end: '#EC4899' }, // Purple to Pink
-      { start: '#EC4899', end: '#3B82F6' }, // Pink to Blue
-      { start: '#3B82F6', end: '#8B5CF6' }, // Blue to Purple
-    ]
-
-    // Apply gradient styles - using Pink to Blue gradient
-    heading.style.background = `linear-gradient(90deg, ${gradientColors[1].start}, ${gradientColors[1].end})`
-    heading.style.webkitBackgroundClip = 'text'
-    heading.style.webkitTextFillColor = 'transparent'
-    heading.style.backgroundClip = 'text'
-    heading.style.backgroundSize = '200% 100%'
-    heading.style.backgroundPosition = '0% 50%'
-    heading.style.willChange = 'background-position'
-
-    // Gradient flow animation
-    const gradientFlow = gsap.to(heading, {
-      backgroundPosition: '100% 50%',
-      duration: 4.5,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true
-    })
-
-    // Subtle scale pulse
-    const scalePulse = gsap.to(heading, {
-      scale: 1.02,
-      duration: 3.3,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true,
-      delay: 0.2
-    })
-
-    return () => {
-      if (gradientFlow) gradientFlow.kill()
-      if (scalePulse) scalePulse.kill()
-      gsap.killTweensOf(heading)
-    }
-  }, [])
+  // Removed gradient animation for "Why PINAKKAA Stands Out" heading - now static white text
 
   // Scroll animations for sections
   useEffect(() => {
@@ -323,7 +236,7 @@ const WhyChooseUs = () => {
     <section
       ref={containerRef}
       id="why-choose-us"
-      className="relative py-20 md:py-32 lg:py-40 px-6 md:px-12 lg:px-24 overflow-hidden"
+      className="relative pt-20 md:pt-32 lg:pt-40 pb-12 md:pb-16 lg:pb-20 px-6 md:px-12 lg:px-24 overflow-hidden"
       style={{
         backgroundColor: '#000000',
       }}
@@ -390,7 +303,7 @@ const WhyChooseUs = () => {
                   letterSpacing: '0.4em'
                 }}
               >
-                WHY CHOOSE US
+                
               </h6>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-600"></div>
             </motion.div>
@@ -490,13 +403,37 @@ const WhyChooseUs = () => {
               ref={whoWeAreHeadingRef}
               className="mb-8 inline-block"
               style={{ 
-                fontFamily: 'system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                fontFamily: "'Playfair Display', serif",
                 fontSize: 'clamp(48px, 8vw, 120px)',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 whiteSpace: 'nowrap',
-                cursor: 'default'
+                cursor: 'default',
+                color: '#FFFFFF'
+              }}
+            >
+              
+            </h2>
+          </motion.div>
+
+          {/* Why Choose Us Heading */}
+          <motion.div
+            className="mb-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-8 inline-block"
+              style={{ 
+                fontFamily: "'Playfair Display', serif",
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: '#FFFFFF',
+                lineHeight: '1.1'
               }}
             >
               Why Choose Us
@@ -612,61 +549,9 @@ const WhyChooseUs = () => {
           ))}
         </div>
 
-        {/* Experience Section */}
-        <div
-          ref={el => sectionRefs.current[3] = el}
-          className="text-center mb-32 md:mb-40"
-          style={{ opacity: 0 }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div 
-              className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-8"
-              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
-            >
-              Experience
-            </div>
-            <div className="flex items-baseline justify-center gap-3 mb-12">
-              <span 
-                className="text-8xl md:text-9xl lg:text-[12rem] font-light text-white leading-none"
-                style={{ 
-                  fontFamily: "'Playfair Display', 'Georgia', serif",
-                  fontWeight: 300,
-                  letterSpacing: '-0.05em'
-                }}
-              >
-                10
-              </span>
-              <span 
-                className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-500"
-                style={{ 
-                  fontFamily: "'Playfair Display', 'Georgia', serif",
-                  fontWeight: 300
-                }}
-              >
-                +
-              </span>
-            </div>
-            <p 
-              className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto"
-              style={{ 
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 300,
-                letterSpacing: '0.01em'
-              }}
-            >
-              years of experience
-            </p>
-          </motion.div>
-        </div>
-
         {/* Our Commitment */}
         <div
-          ref={el => sectionRefs.current[4] = el}
+          ref={el => sectionRefs.current[3] = el}
           className="mb-24 md:mb-32"
           style={{ opacity: 0 }}
         >
@@ -705,7 +590,7 @@ const WhyChooseUs = () => {
 
         {/* What Sets Us Apart */}
         <div
-          ref={el => sectionRefs.current[5] = el}
+          ref={el => sectionRefs.current[4] = el}
           className="mb-24 md:mb-32 relative"
           style={{ opacity: 0 }}
         >
@@ -728,15 +613,16 @@ const WhyChooseUs = () => {
               </h6>
               <h2
                 ref={standsOutHeadingRef}
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-12 inline-block"
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-12 inline-block"
                 style={{ 
-                  fontFamily: 'system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                  fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                   whiteSpace: 'normal',
                   cursor: 'default',
-                  lineHeight: '1.1'
+                  lineHeight: '1.1',
+                  color: '#FFFFFF'
                 }}
               >
                 Why PINAKKAA Stands Out
@@ -762,7 +648,7 @@ const WhyChooseUs = () => {
                       className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-6"
                       style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
                     >
-                      Why Choose Us
+                      
                     </div>
                     <div 
                       className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent"

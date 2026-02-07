@@ -93,37 +93,15 @@ const DynamicServicePage = () => {
     }
   }, [service, serviceSlug, navigate])
 
-  // Gradient animation for headings
+  // Set headings to white color
   useEffect(() => {
     if (!service) return
 
-    const gradientColors = [
-      { start: '#8B5CF6', end: '#EC4899' }, // Purple to Pink
-      { start: '#EC4899', end: '#3B82F6' }, // Pink to Blue
-      { start: '#3B82F6', end: '#8B5CF6' }, // Blue to Purple
-    ]
-
-    headingRefs.current.forEach((headingEl, index) => {
+    headingRefs.current.forEach((headingEl) => {
       if (!headingEl) return
 
-      const colorIndex = index % gradientColors.length
-      const colors = gradientColors[colorIndex]
-
-      headingEl.style.background = `linear-gradient(90deg, ${colors.start}, ${colors.end})`
-      headingEl.style.webkitBackgroundClip = 'text'
-      headingEl.style.webkitTextFillColor = 'transparent'
-      headingEl.style.backgroundClip = 'text'
-      headingEl.style.backgroundSize = '200% 100%'
-      headingEl.style.backgroundPosition = '0% 50%'
-      headingEl.style.willChange = 'background-position'
-
-      gsap.to(headingEl, {
-        backgroundPosition: '100% 50%',
-        duration: 4 + (index * 0.5),
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-      })
+      headingEl.style.color = '#FFFFFF'
+      headingEl.style.webkitTextFillColor = '#FFFFFF'
     })
   }, [service])
 
@@ -285,16 +263,16 @@ const DynamicServicePage = () => {
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 500,
-                    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(96, 165, 250, 0.2) 100%)',
-                    border: '1px solid rgba(59, 130, 246, 0.3)',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
                     color: '#FFFFFF',
                     backdropFilter: 'blur(10px)',
-                    boxShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
+                    boxShadow: '0 0 30px rgba(255, 255, 255, 0.2)',
                     textDecoration: 'none',
                   }}
                   onMouseEnter={(e) => {
                     gsap.to(e.currentTarget, {
-                      boxShadow: '0 0 50px rgba(59, 130, 246, 0.4)',
+                      boxShadow: '0 0 50px rgba(255, 255, 255, 0.4)',
                       scale: 1.05,
                       duration: 0.3,
                       ease: 'power2.out',
@@ -302,7 +280,7 @@ const DynamicServicePage = () => {
                   }}
                   onMouseLeave={(e) => {
                     gsap.to(e.currentTarget, {
-                      boxShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
+                      boxShadow: '0 0 30px rgba(255, 255, 255, 0.2)',
                       scale: 1,
                       duration: 0.3,
                       ease: 'power2.out',
@@ -475,7 +453,7 @@ const DynamicServicePage = () => {
                       }}
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center flex-shrink-0 border border-white/20">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/30 to-white/30 flex items-center justify-center flex-shrink-0 border border-white/20">
                           <span className="text-white text-lg font-bold">{idx + 1}</span>
                         </div>
                         <div className="flex-1">
@@ -544,7 +522,7 @@ const DynamicServicePage = () => {
                         })
                       }}
                     >
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/20 to-white/20 border border-white/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
                         <span
                           className="text-3xl font-light text-white/80"
                           style={{
@@ -675,16 +653,16 @@ const DynamicServicePage = () => {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 500,
-                  background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(96, 165, 250, 0.2) 100%)',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
                   color: '#FFFFFF',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
+                  boxShadow: '0 0 30px rgba(255, 255, 255, 0.2)',
                   textDecoration: 'none',
                 }}
                 onMouseEnter={(e) => {
                   gsap.to(e.currentTarget, {
-                    boxShadow: '0 0 50px rgba(59, 130, 246, 0.4)',
+                    boxShadow: '0 0 50px rgba(255, 255, 255, 0.4)',
                     scale: 1.05,
                     duration: 0.3,
                     ease: 'power2.out',
@@ -692,7 +670,7 @@ const DynamicServicePage = () => {
                 }}
                 onMouseLeave={(e) => {
                   gsap.to(e.currentTarget, {
-                    boxShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
+                    boxShadow: '0 0 30px rgba(255, 255, 255, 0.2)',
                     scale: 1,
                     duration: 0.3,
                     ease: 'power2.out',
@@ -750,7 +728,7 @@ const DynamicServicePage = () => {
                       }}
                     >
                       <h3
-                        className="text-xl md:text-2xl font-light mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-pink-500 transition-all duration-300"
+                        className="text-xl md:text-2xl font-light mb-3 group-hover:text-white transition-all duration-300"
                         style={{
                           fontFamily: "'Playfair Display', 'Georgia', serif",
                           color: '#FFFFFF',

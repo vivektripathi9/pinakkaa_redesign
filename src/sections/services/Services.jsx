@@ -103,10 +103,24 @@ const Services = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-sans text-3xl md:text-5xl font-light mb-4 text-primary">
+          <h2 
+            className="text-3xl md:text-5xl font-light mb-4 text-primary"
+            style={{ 
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase'
+            }}
+          >
             WHAT WE DO
           </h2>
-          <p className="font-sans text-muted max-w-2xl mx-auto">
+          <p 
+            className="text-muted max-w-2xl mx-auto"
+            style={{ 
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300
+            }}
+          >
             Comprehensive digital solutions tailored to elevate your business
           </p>
         </motion.div>
@@ -127,17 +141,33 @@ const Services = () => {
                 <div className="mb-6">
                   <Icon size={32} strokeWidth={1} className="text-accent mb-4" />
                 </div>
-                <h3 className="font-sans text-xl font-medium mb-3 text-accent">
+                <h3 
+                  className="text-xl font-medium mb-3 text-accent"
+                  style={{ 
+                    fontFamily: "'Playfair Display', 'Georgia', serif",
+                    fontWeight: 600
+                  }}
+                >
                   {capability.title}
                 </h3>
-                <p className="font-sans text-sm text-muted mb-6 leading-relaxed">
+                <p 
+                  className="text-sm text-muted mb-6 leading-relaxed"
+                  style={{ 
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300
+                  }}
+                >
                   {capability.description}
                 </p>
                 <div className="space-y-2">
                   {capability.specs.map((spec, specIndex) => (
                     <div
                       key={specIndex}
-                      className="font-sans text-xs text-muted border-l-2 border-accent/30 pl-3"
+                      className="text-xs text-muted border-l-2 border-accent/30 pl-3"
+                      style={{ 
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 300
+                      }}
                     >
                       {spec}
                     </div>

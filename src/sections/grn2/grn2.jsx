@@ -438,7 +438,8 @@ const Grn2 = () => {
             {/* Brand Logo */}
             <div className="mb-6">
               <div
-                className="text-2xl font-mono font-bold"
+                className="text-2xl font-bold"
+                style={{ fontFamily: "'Inter', sans-serif" }}
                 style={{
                   color: '#D4AF37', // Golden accent for logo
                   letterSpacing: '0.1em',
@@ -450,7 +451,8 @@ const Grn2 = () => {
 
             {/* Gartner Heading */}
             <h3
-              className="font-sans text-xl font-semibold mb-4"
+              className="text-xl font-semibold mb-4"
+              style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}
               style={{
                 color: '#FFFFFF',
                 letterSpacing: '0.05em',
@@ -462,7 +464,8 @@ const Grn2 = () => {
             {/* Supporting Text */}
             <div className="space-y-2">
               <p
-                className="font-sans text-sm"
+                className="text-sm"
+                style={{ fontFamily: "'Inter', sans-serif" }}
                 style={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   lineHeight: 1.6,
@@ -471,7 +474,8 @@ const Grn2 = () => {
                 2025 Market Guide
               </p>
               <p
-                className="font-sans text-sm"
+                className="text-sm"
+                style={{ fontFamily: "'Inter', sans-serif" }}
                 style={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   lineHeight: 1.6,
@@ -480,7 +484,8 @@ const Grn2 = () => {
                 Yard Management
               </p>
               <p
-                className="font-sans text-sm"
+                className="text-sm"
+                style={{ fontFamily: "'Inter', sans-serif" }}
                 style={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   lineHeight: 1.6,
@@ -496,7 +501,8 @@ const Grn2 = () => {
             {/* GROUP 1 - TECHNOLOGY */}
             <div className="flex flex-col">
               <h4
-                className="font-sans text-xs uppercase mb-6"
+                className="text-xs uppercase mb-6"
+                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
                 style={{
                   color: 'rgba(255, 255, 255, 0.6)',
                   letterSpacing: '0.15em',
@@ -508,7 +514,8 @@ const Grn2 = () => {
               <nav className="flex flex-col space-y-3">
                 <a
                   href="#"
-                  className="font-sans text-sm transition-opacity duration-300"
+                  className="text-sm transition-opacity duration-300"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                   style={{
                     color: 'rgba(255, 255, 255, 0.9)',
                     textDecoration: 'none',
@@ -524,7 +531,8 @@ const Grn2 = () => {
                 </a>
                 <a
                   href="#"
-                  className="font-sans text-sm transition-opacity duration-300"
+                  className="text-sm transition-opacity duration-300"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                   style={{
                     color: 'rgba(255, 255, 255, 0.9)',
                     textDecoration: 'none',
@@ -540,7 +548,8 @@ const Grn2 = () => {
                 </a>
                 <a
                   href="#"
-                  className="font-sans text-sm transition-opacity duration-300"
+                  className="text-sm transition-opacity duration-300"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                   style={{
                     color: 'rgba(255, 255, 255, 0.9)',
                     textDecoration: 'none',
@@ -560,7 +569,8 @@ const Grn2 = () => {
             {/* GROUP 2 - COMPANY */}
             <div className="flex flex-col">
               <h4
-                className="font-sans text-xs uppercase mb-6"
+                className="text-xs uppercase mb-6"
+                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
                 style={{
                   color: 'rgba(255, 255, 255, 0.6)',
                   letterSpacing: '0.15em',
@@ -572,7 +582,8 @@ const Grn2 = () => {
               <nav className="flex flex-col space-y-3">
                 <a
                   href="#"
-                  className="font-sans text-sm transition-opacity duration-300"
+                  className="text-sm transition-opacity duration-300"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                   style={{
                     color: 'rgba(255, 255, 255, 0.9)',
                     textDecoration: 'none',
@@ -588,7 +599,8 @@ const Grn2 = () => {
                 </a>
                 <a
                   href="#"
-                  className="font-sans text-sm transition-opacity duration-300"
+                  className="text-sm transition-opacity duration-300"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                   style={{
                     color: 'rgba(255, 255, 255, 0.9)',
                     textDecoration: 'none',
@@ -604,7 +616,8 @@ const Grn2 = () => {
                 </a>
                 <a
                   href="/contact"
-                  className="font-sans text-sm transition-opacity duration-300"
+                  className="text-sm transition-opacity duration-300"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                   style={{
                     color: 'rgba(255, 255, 255, 0.9)',
                     textDecoration: 'none',
@@ -625,7 +638,8 @@ const Grn2 = () => {
           {/* RIGHT COLUMN - Reach Us */}
           <div className="flex flex-col flex-1">
             <h4
-              className="font-sans text-xs uppercase mb-6"
+              className="text-xs uppercase mb-6"
+              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
               style={{
                 color: 'rgba(255, 255, 255, 0.6)',
                 letterSpacing: '0.15em',
@@ -637,7 +651,8 @@ const Grn2 = () => {
 
             {/* Headline */}
             <h3
-              className="font-sans text-xl font-light mb-3"
+              className="text-xl font-light mb-3"
+              style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}
               style={{
                 color: '#FFFFFF',
                 lineHeight: 1.3,
@@ -649,7 +664,8 @@ const Grn2 = () => {
 
             {/* Supporting Line */}
             <p
-              className="font-sans text-sm mb-8"
+              className="text-sm mb-8"
+              style={{ fontFamily: "'Inter', sans-serif" }}
               style={{
                 color: 'rgba(255, 255, 255, 0.7)',
                 lineHeight: 1.6,
@@ -711,7 +727,8 @@ const Grn2 = () => {
           }}
         >
           <p
-            className="font-sans text-xs text-center"
+            className="text-xs text-center"
+            style={{ fontFamily: "'Inter', sans-serif" }}
             style={{
               color: 'rgba(255, 255, 255, 0.5)',
               letterSpacing: '0.05em',

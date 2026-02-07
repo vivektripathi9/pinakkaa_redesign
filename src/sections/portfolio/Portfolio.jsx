@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Add luxury font styles
 const luxuryFontStyle = {
-  fontFamily: "'Playfair Display', 'Cormorant Garamond', 'Libre Baskerville', serif",
+  fontFamily: "'Playfair Display', 'Georgia', serif",
   fontWeight: 400,
   letterSpacing: '-0.01em',
 }

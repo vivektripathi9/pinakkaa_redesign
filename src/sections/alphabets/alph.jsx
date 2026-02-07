@@ -472,7 +472,7 @@ const Alphabets = () => {
         >
           <span
             style={{
-              fontFamily: 'system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontFamily: "'Inter', sans-serif",
               fontSize: 'clamp(36px, 6vw, 96px)',
               fontWeight: 700,
               letterSpacing: '0.05em',
@@ -495,7 +495,7 @@ const Alphabets = () => {
         >
           <span
             style={{
-              fontFamily: 'system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontFamily: "'Inter', sans-serif",
               fontSize: 'clamp(36px, 6vw, 96px)',
               fontWeight: 700,
               letterSpacing: '0.05em',

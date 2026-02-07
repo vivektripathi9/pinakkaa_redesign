@@ -691,6 +691,7 @@ const GiveYour = () => {
         position: 'relative',
         backgroundColor: '#000',
         paddingTop: 'clamp(60px, 8vw, 120px)',
+        paddingBottom: 0,
       }}
     >
       <div
@@ -699,7 +700,7 @@ const GiveYour = () => {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
+          alignItems: 'center',
           flexWrap: 'nowrap',
           position: 'relative',
         }}
@@ -758,17 +759,21 @@ const GiveYour = () => {
         >
           <h1
             style={{
+              fontFamily: "'Inter', sans-serif",
               textTransform: 'uppercase',
-              fontSize: 'clamp(3rem, 10vw, 12rem)',
+              fontSize: 'clamp(2rem, 7vw, 8rem)',
               lineHeight: 0.92,
               color: '#a3a3a3',
-              paddingLeft: '30px',
+              paddingLeft: '0',
               marginTop: '30px',
               marginBottom: '0',
               position: 'relative',
               whiteSpace: 'normal',
               wordBreak: 'break-word',
               width: '100%',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textAlign: 'center',
             }}
           >
             give your brand
@@ -785,9 +790,9 @@ const GiveYour = () => {
             width: '100%',
             display: 'flex',
             flexDirection: 'column',
-            paddingLeft: '20px',
-            // gap: '0',
-            textAlign: 'start',
+            paddingLeft: '0',
+            alignItems: 'center',
+            textAlign: 'center',
             overflow: 'visible',
             marginTop: 'clamp(20px, 4vw, 60px)',
             opacity: 0,
@@ -814,21 +819,25 @@ const GiveYour = () => {
             ref={typoTextRef}
             id="typo-text"
             style={{
+              fontFamily: "'Inter', sans-serif",
               whiteSpace: 'normal',
               wordBreak: 'break-word',
               transition: 'all 0.4s ease',
               cursor: 'pointer',
               opacity: 1,
               textTransform: 'uppercase',
-              fontSize: 'clamp(3rem, 10vw, 12rem)',
+              fontSize: 'clamp(2rem, 7vw, 8rem)',
               lineHeight: 1,
               paddingTop: '0.1em',
               color: '#a3a3a3',
-              paddingLeft: '30px',
+              paddingLeft: '0',
               marginTop: '0',
               marginBottom: '0',
               width: '100%',
               position: 'relative',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textAlign: 'center',
             }}
             onMouseEnter={() => {
               if (typoTextRef.current) {

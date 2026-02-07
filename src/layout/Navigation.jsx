@@ -131,7 +131,8 @@ const Navigation = () => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleLinkClick(link, e)}
-                  className="font-sans text-base text-white/80 hover:text-white transition-colors relative group"
+                  className="text-base text-white/80 hover:text-white transition-colors relative group"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -144,7 +145,8 @@ const Navigation = () => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleLinkClick(link, e)}
-                  className="font-sans text-base text-white/80 hover:text-white transition-colors relative group"
+                  className="text-base text-white/80 hover:text-white transition-colors relative group"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -185,7 +187,8 @@ const Navigation = () => {
                   handleLinkClick(link, e)
                   setIsMobileMenuOpen(false)
                 }}
-                className="block py-3 font-sans text-sm text-white/80 hover:text-white transition-colors border-b border-white/10 last:border-0"
+                className="block py-3 text-sm text-white/80 hover:text-white transition-colors border-b border-white/10 last:border-0"
+                style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 {link.name}
               </a>

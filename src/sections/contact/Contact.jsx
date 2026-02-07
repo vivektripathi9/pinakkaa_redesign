@@ -76,10 +76,7 @@ const Contact = () => {
               fontFamily: "'Playfair Display', 'Georgia', serif",
               letterSpacing: '-0.02em',
               fontWeight: 300,
-              background: 'linear-gradient(90deg, #8B5CF6, #EC4899)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              color: '#FFFFFF',
             }}
           >
             Let's Start a Conversation
@@ -112,10 +109,7 @@ const Contact = () => {
                 fontFamily: "'Playfair Display', 'Georgia', serif",
                 letterSpacing: '-0.02em',
                 fontWeight: 300,
-                background: 'linear-gradient(90deg, #EC4899, #3B82F6)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                color: '#FFFFFF',
               }}
             >
               Send Us a Message
@@ -261,11 +255,11 @@ const Contact = () => {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 500,
-                  background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(96, 165, 250, 0.2) 100%)',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
                   color: '#FFFFFF',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
+                  boxShadow: '0 0 30px rgba(255, 255, 255, 0.2)',
                 }}
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
@@ -281,7 +275,7 @@ const Contact = () => {
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(96, 165, 250, 0.3) 100%)',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%)',
                   }}
                 />
               </button>
@@ -303,10 +297,7 @@ const Contact = () => {
                   fontFamily: "'Playfair Display', 'Georgia', serif",
                   letterSpacing: '-0.02em',
                   fontWeight: 300,
-                  background: 'linear-gradient(90deg, #3B82F6, #8B5CF6)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  color: '#FFFFFF',
                 }}
               >
                 Contact Information
@@ -320,7 +311,7 @@ const Contact = () => {
                     background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
                   }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center border border-white/20 transition-transform duration-300 group-hover:scale-110 flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/20 to-white/20 flex items-center justify-center border border-white/20 transition-transform duration-300 group-hover:scale-110 flex-shrink-0">
                     <Mail size={20} strokeWidth={1.5} className="text-white/80" />
                   </div>
                   <div className="flex-1">
@@ -344,7 +335,7 @@ const Contact = () => {
                         fontWeight: 400,
                       }}
                       onMouseEnter={(e) => {
-                        e.target.style.color = 'rgba(139, 92, 246, 1)'
+                        e.target.style.color = '#FFFFFF'
                       }}
                       onMouseLeave={(e) => {
                         e.target.style.color = '#FFFFFF'
@@ -362,7 +353,7 @@ const Contact = () => {
                     background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
                   }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-white/20 transition-transform duration-300 group-hover:scale-110 flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/20 to-white/20 flex items-center justify-center border border-white/20 transition-transform duration-300 group-hover:scale-110 flex-shrink-0">
                     <Phone size={20} strokeWidth={1.5} className="text-white/80" />
                   </div>
                   <div className="flex-1">
@@ -423,7 +414,7 @@ const Contact = () => {
                     background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
                   }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center border border-white/20 transition-transform duration-300 group-hover:scale-110 flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/20 to-white/20 flex items-center justify-center border border-white/20 transition-transform duration-300 group-hover:scale-110 flex-shrink-0">
                     <MapPin size={20} strokeWidth={1.5} className="text-white/80" />
                   </div>
                   <div className="flex-1">

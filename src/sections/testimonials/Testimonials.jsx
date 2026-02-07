@@ -78,14 +78,24 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 
-            className="font-mono text-3xl md:text-5xl font-bold mb-4"
-            style={{ color: '#0A1B2E' }}
+            className="text-3xl md:text-5xl font-bold mb-4"
+            style={{ 
+              fontFamily: "'Inter', sans-serif",
+              color: '#0A1B2E',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase'
+            }}
           >
             TESTIMONIALS
           </h2>
           <p 
-            className="font-sans max-w-2xl mx-auto"
-            style={{ color: '#7A8CA3' }}
+            className="max-w-2xl mx-auto"
+            style={{ 
+              fontFamily: "'Inter', sans-serif",
+              color: '#7A8CA3',
+              fontWeight: 300
+            }}
           >
             What our clients say about working with us
           </p>
@@ -104,8 +114,12 @@ const Testimonials = () => {
             >
               <Quote size={48} strokeWidth={1} className="text-accent/50 mx-auto mb-6" style={{ color: '#2F80ED' }} />
               <p 
-                className="font-sans text-lg mb-8 leading-relaxed italic"
-                style={{ color: '#0A1B2E' }}
+                className="text-lg mb-8 leading-relaxed italic"
+                style={{ 
+                  fontFamily: "'Inter', sans-serif",
+                  color: '#0A1B2E',
+                  fontWeight: 300
+                }}
               >
                 "{testimonials[currentIndex].content}"
               </p>
@@ -119,14 +133,22 @@ const Testimonials = () => {
                 ))}
               </div>
               <h4 
-                className="font-mono text-xl font-semibold mb-1"
-                style={{ color: '#0A1B2E' }}
+                className="text-xl font-semibold mb-1"
+                style={{ 
+                  fontFamily: "'Playfair Display', 'Georgia', serif",
+                  color: '#0A1B2E',
+                  fontWeight: 600
+                }}
               >
                 {testimonials[currentIndex].name}
               </h4>
               <p 
-                className="font-sans text-sm"
-                style={{ color: '#7A8CA3' }}
+                className="text-sm"
+                style={{ 
+                  fontFamily: "'Inter', sans-serif",
+                  color: '#7A8CA3',
+                  fontWeight: 300
+                }}
               >
                 {testimonials[currentIndex].role}, {testimonials[currentIndex].company}
               </p>

@@ -874,7 +874,7 @@ const Animation = () => {
         ref={containerRef}
         className="text-center"
         style={{
-          fontFamily: 'system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif',
+          fontFamily: "'Inter', sans-serif",
           fontSize: 'clamp(3rem, 8vw, 10rem)',
           fontWeight: 400,
           letterSpacing: '0.1em',

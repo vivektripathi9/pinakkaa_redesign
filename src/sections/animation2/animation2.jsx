@@ -45,8 +45,8 @@ const Animation2 = () => {
       const textElement = document.createElement('div')
       textElement.className = 'main-text'
       textElement.textContent = line
-      textElement.style.fontFamily = 'system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif'
-      textElement.style.fontSize = 'clamp(48px, 8vw, 120px)'
+      textElement.style.fontFamily = "'Playfair Display', serif"
+      textElement.style.fontSize = 'clamp(36px, 6vw, 80px)'
       textElement.style.fontWeight = '700'
       textElement.style.letterSpacing = '0.08em'
       textElement.style.whiteSpace = 'nowrap'

@@ -240,8 +240,9 @@ const AboutUs = () => {
               >
                 {/* Step Title - Luxury Typography */}
                 <h2
-                  className="step-title font-sans text-4xl md:text-5xl lg:text-6xl font-light mb-8 leading-tight"
+                  className="step-title text-4xl md:text-5xl lg:text-6xl font-light mb-8 leading-tight"
                   style={{
+                    fontFamily: "'Playfair Display', 'Georgia', serif",
                     color: '#0A1B2E',
                     letterSpacing: '-0.02em',
                     fontWeight: 300,
@@ -252,8 +253,9 @@ const AboutUs = () => {
 
                 {/* Step Description - Pleasant, Readable Text */}
                 <p
-                  className="step-description font-sans text-lg md:text-xl lg:text-2xl leading-relaxed"
+                  className="step-description text-lg md:text-xl lg:text-2xl leading-relaxed"
                   style={{
+                    fontFamily: "'Inter', sans-serif",
                     color: '#7A8CA3',
                     fontWeight: 300,
                     letterSpacing: '0.01em',

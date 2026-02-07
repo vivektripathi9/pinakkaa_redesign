@@ -46,69 +46,12 @@ const ServiceNew = () => {
   const titleWordsRef = useRef([])
   const dividerRefs = useRef([])
   const specsRefs = useRef([])
+  const [activeService, setActiveService] = useState(0)
+  const gridRef = useRef(null)
 
   // Enhanced intro animations with staggered word reveal - Title appears first
   useEffect(() => {
-    if (!titleRef.current || !subtitleRef.current || !buttonRef.current) return
-
-    // Split title into words and animate each word - Show first
-    const titleWords = titleRef.current.querySelectorAll('.title-word')
-    titleWordsRef.current = Array.from(titleWords)
-
-    // Staggered word animation for title - Appears immediately when section opens
-    gsap.fromTo(
-      titleWords,
-      {
-        opacity: 0,
-        y: 50,
-        rotationX: -90,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 1,
-        stagger: 0.08,
-        ease: 'power3.out',
-        delay: 0.2,
-      }
-    )
-
-    // Subtitle blur-to-clear animation - Appears after title
-    gsap.fromTo(
-      subtitleRef.current,
-      {
-        opacity: 0,
-        y: 30,
-        filter: 'blur(10px)',
-      },
-      {
-        opacity: 1,
-        y: 0,
-        filter: 'blur(0px)',
-        duration: 1.2,
-        ease: 'power2.out',
-        delay: 1.5, // Delay after title completes
-      }
-    )
-
-    // Button slide up with scale - Appears last
-    gsap.fromTo(
-      buttonRef.current,
-      {
-        opacity: 0,
-        y: 40,
-        scale: 0.9,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: 'back.out(1.7)',
-        delay: 2.2, // Delay after subtitle
-      }
-    )
+    if (!titleRef.current) return
 
     // Show intro section immediately
     if (introRef.current) {
@@ -117,6 +60,24 @@ const ServiceNew = () => {
         duration: 0.5,
         ease: 'power2.out',
       })
+    }
+
+    // Set grid columns based on screen size
+    const updateGridColumns = () => {
+      if (gridRef.current) {
+        if (window.innerWidth >= 1024) {
+          gridRef.current.style.gridTemplateColumns = 'minmax(0, 32%) minmax(0, 68%)'
+        } else {
+          gridRef.current.style.gridTemplateColumns = '1fr'
+        }
+      }
+    }
+
+    updateGridColumns()
+    window.addEventListener('resize', updateGridColumns)
+
+    return () => {
+      window.removeEventListener('resize', updateGridColumns)
     }
   }, [])
 
@@ -390,226 +351,223 @@ const ServiceNew = () => {
         }}
       />
 
-      {/* Services Intro - Hero-like Section - Shows "Services We Provide" first */}
+      {/* Services Heading - Single Row */}
       <div
         ref={introRef}
-        className="relative min-h-screen flex items-center px-6 md:px-12 lg:px-24"
+        className="relative px-6 md:px-12 lg:px-24 pb-16 md:pb-24 pt-8 md:pt-12"
         style={{
           zIndex: 1,
-          opacity: 1, // Visible immediately
+          opacity: 1,
         }}
       >
-        <div className="max-w-4xl">
+        <div className="max-w-7xl mx-auto text-center">
           <h1
             ref={titleRef}
-            className="font-sans text-6xl md:text-8xl lg:text-9xl font-light mb-8 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight whitespace-nowrap"
             style={{
+              fontFamily: "'Playfair Display', 'Georgia', serif",
               color: '#FFFFFF',
               letterSpacing: '-0.02em',
-              fontWeight: 300,
+              fontWeight: 200,
             }}
           >
-            {'Services We Provide'.split(' ').map((word, index) => (
-              <span
-                key={index}
-                className="title-word inline-block mr-3"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {word}
-              </span>
-            ))}
+            Services We Provide
           </h1>
-          <p
-            ref={subtitleRef}
-            className="font-sans text-xl md:text-2xl leading-relaxed max-w-2xl mb-12"
-            style={{
-              color: 'rgba(255, 255, 255, 0.7)',
-              fontWeight: 300,
-              lineHeight: 1.6,
-              opacity: 0,
-            }}
-          >
-            Comprehensive digital solutions tailored to elevate your business
-          </p>
-          
-          {/* Explore More Button */}
-          <button
-            ref={buttonRef}
-            onClick={scrollToServices}
-            onMouseEnter={handleButtonHover}
-            onMouseLeave={handleButtonLeave}
-            className="group relative inline-flex items-center gap-4 px-8 py-4 border border-white/20 hover:border-white/40 transition-all duration-300"
-            style={{
-              opacity: 0,
-              backgroundColor: 'transparent',
-              color: '#FFFFFF',
-              fontFamily: 'inherit',
-              fontSize: '0.875rem',
-              fontWeight: 300,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              cursor: 'pointer',
-            }}
-          >
-            <span>Explore Services</span>
-            <ArrowRight 
-              size={18} 
-              strokeWidth={1}
-              className="transition-transform duration-300 group-hover:translate-x-2"
-            />
-            <span
-              ref={buttonUnderlineRef}
-              className="absolute bottom-0 left-0 h-px bg-white"
-              style={{
-                width: '0%',
-              }}
-            />
-          </button>
         </div>
       </div>
 
-      {/* Services List - Editorial Layout */}
-      <div className="services-list relative px-6 md:px-12 lg:px-24 py-32" style={{ zIndex: 1 }}>
-        <div className="max-w-6xl mx-auto">
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              ref={(el) => {
-                servicesRef.current[index] = el
-              }}
-              className="mb-32 md:mb-40 last:mb-0 relative"
-              style={{
-                opacity: 0,
-              }}
-            >
-              {/* Service Number Badge */}
-              <div
-                className="service-number absolute -left-8 md:-left-12 top-0 flex items-center justify-center"
-                style={{
-                  width: '60px',
-                  height: '60px',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '50%',
-                  color: 'rgba(255, 255, 255, 0.4)',
-                  fontSize: '1.25rem',
-                  fontWeight: 300,
-                  fontFamily: 'monospace',
-                  opacity: 0,
-                }}
-              >
-                {String(index + 1).padStart(2, '0')}
-              </div>
-
-              {/* Service Title */}
-              <h2
-                className="service-title font-sans text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight"
-                style={{
-                  color: '#FFFFFF',
-                  letterSpacing: '-0.02em',
-                  fontWeight: 300,
-                  opacity: 0,
-                }}
-              >
-                {service.title}
-              </h2>
-
-              {/* Service Description */}
-              <p
-                className="service-description font-sans text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed max-w-3xl"
-                style={{
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  fontWeight: 300,
-                  lineHeight: 1.7,
-                  opacity: 0,
-                }}
-              >
-                {service.description}
-              </p>
-
-              {/* Service Specs */}
-              <div className="service-specs mt-12 space-y-3">
-                {service.specs.map((spec, specIndex) => (
-                  <div
-                    key={specIndex}
-                    className="spec-item font-sans text-base md:text-lg relative pl-6"
-                    style={{
-                      color: 'rgba(255, 255, 255, 0.6)',
-                      fontWeight: 300,
-                      lineHeight: 1.6,
-                      opacity: 0,
-                    }}
-                  >
-                    <span
-                      className="absolute left-0 top-2 w-1 h-1 bg-white/40 rounded-full"
-                      style={{
-                        transform: 'translateY(50%)',
-                      }}
-                    />
-                    {spec}
-                  </div>
-                ))}
-              </div>
-
-              {/* Animated Divider Line */}
-              {index < services.length - 1 && (
-                <div
-                  ref={(el) => {
-                    dividerRefs.current[index] = el
-                  }}
-                  className="service-divider mt-20 md:mt-32 relative"
-                  style={{
-                    height: '1px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    width: '100%',
-                    opacity: 0,
-                  }}
-                >
-                  <div
-                    className="absolute top-0 left-0 h-full bg-white/20"
-                    style={{
-                      width: '0%',
-                    }}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Explore Button at the end */}
-        <div className="flex justify-center mt-32 md:mt-40">
-          <button
-            ref={exploreButtonRef}
-            onClick={handleExploreClick}
-            onMouseEnter={handleExploreButtonHover}
-            onMouseLeave={handleExploreButtonLeave}
-            className="group relative inline-flex items-center gap-4 px-10 py-5 border border-white/20 hover:border-white/40 transition-all duration-300"
+      {/* Services List - Two Column Layout */}
+      <div className="services-list relative" style={{ zIndex: 1 }}>
+        <div 
+          ref={gridRef}
+          className="grid min-h-screen"
+          style={{
+            gridTemplateColumns: '1fr',
+            gap: 0,
+          }}
+        >
+          {/* LEFT COLUMN - Navigation Menu (White Background) */}
+          <div
+            className="relative px-8 md:px-12 lg:px-16 py-16 md:py-24 lg:max-w-[420px]"
             style={{
-              backgroundColor: 'transparent',
-              color: '#FFFFFF',
-              fontFamily: 'inherit',
-              fontSize: '0.875rem',
-              fontWeight: 300,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              cursor: 'pointer',
-              textDecoration: 'none',
+              backgroundColor: '#FFFFFF',
+              zIndex: 2,
+              width: '100%',
             }}
           >
-            <span>Explore More</span>
-            <ArrowRight 
-              size={20} 
-              strokeWidth={1}
-              className="transition-transform duration-300 group-hover:translate-x-2"
-            />
-            <span
-              ref={exploreButtonUnderlineRef}
-              className="absolute bottom-0 left-0 h-px bg-white"
+            {/* ABOUT Heading */}
+            <h2
+              className="mb-6"
               style={{
-                width: '0%',
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '1.5rem',
+                fontWeight: 700,
+                color: '#000000',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+              }}
+            >
+              SERVICES
+            </h2>
+
+            {/* Divider Line */}
+            <div
+              className="mb-12"
+              style={{
+                height: '1px',
+                backgroundColor: '#000000',
+                width: '100%',
               }}
             />
-          </button>
+
+            {/* Service Navigation List */}
+            <nav className="space-y-2">
+              {services.map((service, index) => (
+                <button
+                  key={service.id}
+                  onClick={() => setActiveService(index)}
+                  className="w-full text-left py-4 px-0 transition-all duration-300"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '1rem',
+                    fontWeight: activeService === index ? 600 : 400,
+                    color: '#000000',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    cursor: 'pointer',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    opacity: activeService === index ? 1 : 0.7,
+                  }}
+                  onMouseEnter={(e) => {
+                    if (activeService !== index) {
+                      e.target.style.opacity = '0.9'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeService !== index) {
+                      e.target.style.opacity = '0.7'
+                    }
+                  }}
+                >
+                  {String(index + 1).padStart(2, '0')} {service.title}
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          {/* RIGHT COLUMN - Content Area (Black Background) */}
+          <div
+            className="relative px-8 md:px-12 lg:px-16 py-16 md:py-24 flex items-center"
+            style={{
+              backgroundColor: '#000000',
+              zIndex: 1,
+            }}
+          >
+            {services[activeService] && (
+              <div className="w-full">
+                {/* Main Heading */}
+                <h2
+                  className="mb-6 whitespace-nowrap"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
+                    fontWeight: 700,
+                    color: '#FFFFFF',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {services[activeService].title}
+                </h2>
+
+                {/* Subheading */}
+                <p
+                  className="mb-8"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 'clamp(0.75rem, 1.2vw, 0.875rem)',
+                    fontWeight: 400,
+                    color: '#FFFFFF',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    opacity: 0.9,
+                  }}
+                >
+                  {services[activeService].description.split('.')[0]}.
+                </p>
+
+                {/* Description Paragraphs */}
+                <div className="space-y-6 max-w-2xl">
+                  <p
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: 'clamp(0.875rem, 1vw, 1rem)',
+                      fontWeight: 300,
+                      color: '#FFFFFF',
+                      lineHeight: 1.8,
+                    }}
+                  >
+                    {services[activeService].description}
+                  </p>
+
+                  {/* Service Specs */}
+                  <div className="mt-8 space-y-4">
+                    {services[activeService].specs.map((spec, specIndex) => (
+                      <div
+                        key={specIndex}
+                        style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: 'clamp(0.875rem, 0.9vw, 0.9375rem)',
+                          fontWeight: 300,
+                          color: 'rgba(255, 255, 255, 0.8)',
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        • {spec}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Explore Button */}
+                <div className="mt-12">
+                  <button
+                    ref={exploreButtonRef}
+                    onClick={handleExploreClick}
+                    onMouseEnter={handleExploreButtonHover}
+                    onMouseLeave={handleExploreButtonLeave}
+                    className="group relative inline-flex items-center gap-4 px-10 py-5 border border-white/20 hover:border-white/40 transition-all duration-300"
+                    style={{
+                      backgroundColor: 'transparent',
+                      color: '#FFFFFF',
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '0.875rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <span>Explore More</span>
+                    <ArrowRight 
+                      size={20} 
+                      strokeWidth={1}
+                      className="transition-transform duration-300 group-hover:translate-x-2"
+                    />
+                    <span
+                      ref={exploreButtonUnderlineRef}
+                      className="absolute bottom-0 left-0 h-px bg-white"
+                      style={{
+                        width: '0%',
+                      }}
+                    />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>

@@ -139,7 +139,7 @@ const Green = () => {
         height: '100vh',
         backgroundColor: '#000000', // Black background
         position: 'relative',
-        fontFamily: '"Playfair Display", "Cormorant Garamond", "EB Garamond", "Bodoni Moda", serif', // Luxury serif fonts
+        fontFamily: "'Playfair Display', 'Georgia', serif",
       }}
     >
       {/* SVG Filters for Glow Effect */}
@@ -480,7 +480,7 @@ const Green = () => {
             color: '#FFFFFF',
             letterSpacing: '-0.01em',
             lineHeight: 1.15,
-            fontFamily: '"Playfair Display", "Cormorant Garamond", "EB Garamond", "Bodoni Moda", serif',
+            fontFamily: "'Playfair Display', 'Georgia', serif",
             fontWeight: 300,
             fontStyle: 'italic',
           }}
@@ -497,7 +497,7 @@ const Green = () => {
             opacity: 0, // Initial state for animation
             letterSpacing: '0.15em',
             fontWeight: 300,
-            fontFamily: '"Playfair Display", "Cormorant Garamond", "EB Garamond", serif',
+            fontFamily: "'Playfair Display', 'Georgia', serif",
             fontStyle: 'normal',
             color: '#FFFFFF',
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
